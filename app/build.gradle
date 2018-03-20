@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'io.fabric'
+apply plugin: 'kotlin-kapt'
 
 buildscript {
     repositories {
@@ -54,6 +55,8 @@ dependencies {
         transitive = true
     }
     implementation Libs.timber
+    implementation Libs.butterknife
+    kapt Libs.butterknifeCompiler
     debugImplementation Libs.leakCanary
     testImplementation Libs.junit
     androidTestImplementation Libs.testRunner

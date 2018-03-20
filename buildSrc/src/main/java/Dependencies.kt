@@ -14,6 +14,7 @@ object Versions {
     const val crashlytics = "2.9.1"
     const val timber = "4.6.1"
     const val leakCanary = "1.5.4"
+    const val butterknife = "8.8.1"
 }
 
 object ClassPaths {
@@ -32,4 +33,6 @@ object Libs {
     const val crashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}@aar"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
+    const val butterknife = "com.jakewharton:butterknife:${Versions.butterknife}"
+    const val butterknifeCompiler = "com.jakewharton:butterknife-compiler:${Versions.butterknife}"
 }
