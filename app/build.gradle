@@ -54,6 +54,7 @@ dependencies {
         transitive = true
     }
     implementation Libs.timber
+    debugImplementation Libs.leakCanary
     testImplementation Libs.junit
     androidTestImplementation Libs.testRunner
     androidTestImplementation Libs.espressoCore

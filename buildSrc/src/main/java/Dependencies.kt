@@ -13,6 +13,7 @@ object Versions {
     const val fabric = "1.+"
     const val crashlytics = "2.9.1"
     const val timber = "4.6.1"
+    const val leakCanary = "1.5.4"
 }
 
 object ClassPaths {
@@ -30,4 +31,5 @@ object Libs {
     const val espressoCore = "com.android.support.test.espresso:espresso-core:${Versions.expresso}"
     const val crashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}@aar"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
 }
