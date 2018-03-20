@@ -53,6 +53,7 @@ dependencies {
     implementation(Libs.crashlytics) {
         transitive = true
     }
+    implementation Libs.timber
     testImplementation Libs.junit
     androidTestImplementation Libs.testRunner
     androidTestImplementation Libs.espressoCore

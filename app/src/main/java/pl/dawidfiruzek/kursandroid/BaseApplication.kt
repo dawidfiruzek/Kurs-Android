@@ -9,5 +9,8 @@ abstract class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Fabric.with(this, Crashlytics())
+        initTimber()
     }
+
+    abstract fun initTimber()
 }
