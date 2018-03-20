@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pl.dawidfiruzek.kursandroid">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".KursApplication"
         android:allowBackup="true"

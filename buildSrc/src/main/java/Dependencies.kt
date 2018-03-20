@@ -10,11 +10,14 @@ object Versions {
     const val junit = "4.12"
     const val testRunner = "1.0.1"
     const val expresso = "3.0.1"
+    const val fabric = "1.+"
+    const val crashlytics = "2.9.1"
 }
 
 object ClassPaths {
     const val gradlePlugin = "com.android.tools.build:gradle:${Versions.gradle}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    const val fabric = "io.fabric.tools:gradle:${Versions.fabric}"
 }
 
 object Libs {
@@ -24,4 +27,5 @@ object Libs {
     const val junit = "junit:junit:${Versions.junit}"
     const val testRunner = "com.android.support.test:runner:${Versions.testRunner}"
     const val espressoCore = "com.android.support.test.espresso:espresso-core:${Versions.expresso}"
+    const val crashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}@aar"
 }
