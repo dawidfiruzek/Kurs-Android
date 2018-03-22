@@ -5,7 +5,7 @@ import dagger.Provides
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 import pl.dawidfiruzek.kursandroid.feature.splash.navigation.SplashRouter
 import pl.dawidfiruzek.kursandroid.feature.splash.presentation.SplashPresenter
-import pl.dawidfiruzek.kursandroid.feature.splash.ui.SplashActivity
+import pl.dawidfiruzek.kursandroid.feature.utils.configuration.Configuration
 
 @Module
 class SplashModule {
@@ -16,11 +16,11 @@ class SplashModule {
 
     @Provides
     fun presenter(
-            activity: SplashActivity,
-            router: SplashContract.Router
+            router: SplashContract.Router,
+            configuration: Configuration
     ): SplashContract.Presenter =
             SplashPresenter(
-                    activity,
-                    router
+                    router,
+                    configuration
             )
 }

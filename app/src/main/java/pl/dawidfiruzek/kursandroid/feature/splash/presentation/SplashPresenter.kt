@@ -1,18 +1,22 @@
 package pl.dawidfiruzek.kursandroid.feature.splash.presentation
 
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
-import timber.log.Timber
+import pl.dawidfiruzek.kursandroid.feature.utils.configuration.Configuration
 
 class SplashPresenter(
-        private val view: SplashContract.View,
-        private val router: SplashContract.Router
+        private val router: SplashContract.Router,
+        private val configuration: Configuration
 ) : SplashContract.Presenter {
 
-    override fun initialize() {
-        Timber.d("Presenter is initialized!")
-    }
+    override fun initialize() = Unit
 
-    override fun clear() {
-        Timber.d("Presenter is cleared!")
+    override fun clear() = Unit
+
+    override fun visible() {
+        if (configuration.isUserLoggedIn()) {
+            router.navigateToRepositories()
+        } else {
+            router.navigateToLogin()
+        }
     }
 }

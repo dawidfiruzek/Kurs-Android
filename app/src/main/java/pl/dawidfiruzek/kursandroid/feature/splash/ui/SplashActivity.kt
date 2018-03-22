@@ -10,7 +10,7 @@ import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 import timber.log.Timber
 import javax.inject.Inject
 
-class SplashActivity : BaseActivity(), SplashContract.View {
+class SplashActivity : BaseActivity() {
 
     @BindView(R.id.splash_image)
     lateinit var splashImage: ImageView
@@ -25,6 +25,11 @@ class SplashActivity : BaseActivity(), SplashContract.View {
         super.onCreate(savedInstanceState)
         Timber.d("message")
         presenter.initialize()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.visible()
     }
 
     override fun onDestroy() {
