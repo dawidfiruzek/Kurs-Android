@@ -1,21 +1,18 @@
 package pl.dawidfiruzek.kursandroid.feature.splash.presentation
 
-import org.junit.After
-import org.junit.Before
+import io.reactivex.disposables.CompositeDisposable
 import org.junit.Test
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoMoreInteractions
-import org.mockito.MockitoAnnotations
+import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 import pl.dawidfiruzek.kursandroid.feature.utils.configuration.Configuration
 
-class SplashPresenterTest {
-
-    @Mock
-    private lateinit var view: SplashContract.View
+class SplashPresenterTest : BaseTest() {
 
     @Mock
     private lateinit var router: SplashContract.Router
@@ -23,24 +20,27 @@ class SplashPresenterTest {
     @Mock
     private lateinit var configuration: Configuration
 
+    @Mock
+    private lateinit var compositeDisposable: CompositeDisposable
+
     private lateinit var presenter: SplashContract.Presenter
 
-    @Before
-    fun setup() {
-        MockitoAnnotations.initMocks(this)
+    override fun setup() {
+        super.setup()
+        trampolineRxPlugin()
         presenter = SplashPresenter(
-                view,
                 router,
-                configuration
+                configuration,
+                compositeDisposable
         )
     }
 
-    @After
-    fun tearDown() {
+    override fun tearDown() {
+        super.tearDown()
         verifyNoMoreInteractions(
-                view,
                 router,
-                configuration
+                configuration,
+                compositeDisposable
         )
     }
 
@@ -60,6 +60,7 @@ class SplashPresenterTest {
 
         presenter.visible()
 
+        verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
         verify(configuration, times(1)).isUserLoggedIn()
         verify(router, times(1)).navigateToLogin()
     }
@@ -70,7 +71,15 @@ class SplashPresenterTest {
 
         presenter.visible()
 
+        verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
         verify(configuration, times(1)).isUserLoggedIn()
         verify(router, times(1)).navigateToRepositories()
+    }
+
+    @Test
+    fun `should clear composite disposable when hide is called`() {
+        presenter.hide()
+
+        verify(compositeDisposable, times(1)).clear()
     }
 }

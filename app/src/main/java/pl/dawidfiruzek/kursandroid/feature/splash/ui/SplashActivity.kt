@@ -32,6 +32,11 @@ class SplashActivity : BaseActivity() {
         presenter.visible()
     }
 
+    override fun onPause() {
+        super.onPause()
+        presenter.hide()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         presenter.clear()
