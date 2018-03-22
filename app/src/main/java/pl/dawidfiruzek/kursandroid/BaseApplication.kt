@@ -3,6 +3,7 @@ package pl.dawidfiruzek.kursandroid
 import android.app.Activity
 import android.app.Application
 import com.crashlytics.android.Crashlytics
+import com.orhanobut.hawk.Hawk
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -17,6 +18,7 @@ abstract class BaseApplication : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
+        Hawk.init(this).build()
         Fabric.with(this, Crashlytics())
         initTimber()
         initDaggerComponent()

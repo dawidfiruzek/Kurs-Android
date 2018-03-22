@@ -17,6 +17,7 @@ object Versions {
     const val butterknife = "8.8.1"
     const val dagger2 = "2.14.1"
     const val mockito = "2.16.0"
+    const val hawk = "2.0.1"
 }
 
 object ClassPaths {
@@ -42,4 +43,5 @@ object Libs {
     const val dagger2Android = "com.google.dagger:dagger-android:${Versions.dagger2}"
     const val dagger2AndroidCompiler = "com.google.dagger:dagger-android-processor:${Versions.dagger2}"
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
+    const val hawk = "com.orhanobut:hawk:${Versions.hawk}"
 }
