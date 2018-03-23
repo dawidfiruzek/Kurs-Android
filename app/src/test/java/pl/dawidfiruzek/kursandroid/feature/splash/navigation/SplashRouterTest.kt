@@ -1,6 +1,5 @@
 package pl.dawidfiruzek.kursandroid.feature.splash.navigation
 
-import android.content.Intent
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.times
@@ -33,13 +32,13 @@ class SplashRouterTest : BaseTest() {
     fun `should navigate to login activity when navigateToLogin is called`() {
         router.navigateToLogin()
 
-        verify(activity, times(1)).startActivity(Intent(activity, LoginActivity::class.java))
+        verify(activity, times(1)).startActivity(LoginActivity::class.java)
     }
 
     @Test
     fun `should navigate to repositories activity when navigateToRepositories is called`() {
         router.navigateToRepositories()
 
-        verify(activity, times(1)).startActivity(Intent(activity, RepositoriesActivity::class.java))
+        verify(activity, times(1)).startActivity(RepositoriesActivity::class.java)
     }
 }

@@ -1,6 +1,5 @@
 package pl.dawidfiruzek.kursandroid.feature.splash.navigation
 
-import android.content.Intent
 import pl.dawidfiruzek.kursandroid.feature.login.ui.LoginActivity
 import pl.dawidfiruzek.kursandroid.feature.repositories.ui.RepositoriesActivity
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
@@ -11,10 +10,10 @@ class SplashRouter(
 ) : SplashContract.Router {
 
     override fun navigateToLogin() {
-        activity.startActivity(Intent(activity, LoginActivity::class.java))
+        activity.startActivity(LoginActivity::class.java)
     }
 
     override fun navigateToRepositories() {
-        activity.startActivity(Intent(activity, RepositoriesActivity::class.java))
+        activity.startActivity(RepositoriesActivity::class.java)
     }
 }
