@@ -44,6 +44,9 @@ android {
             dimension "mode"
         }
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
