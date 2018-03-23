@@ -29,14 +29,14 @@ class SplashRouterTest : BaseTest() {
     }
 
     @Test
-    fun `should navigate to login activity when navigateToLogin is called`() {
+    fun `should start login activity when navigateToLogin is called`() {
         router.navigateToLogin()
 
         verify(activity, times(1)).startActivity(LoginActivity::class.java)
     }
 
     @Test
-    fun `should navigate to repositories activity when navigateToRepositories is called`() {
+    fun `should start repositories activity when navigateToRepositories is called`() {
         router.navigateToRepositories()
 
         verify(activity, times(1)).startActivity(RepositoriesActivity::class.java)
