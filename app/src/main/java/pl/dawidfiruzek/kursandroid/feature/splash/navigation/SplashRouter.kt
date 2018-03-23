@@ -1,5 +1,8 @@
 package pl.dawidfiruzek.kursandroid.feature.splash.navigation
 
+import android.content.Intent
+import pl.dawidfiruzek.kursandroid.feature.login.ui.LoginActivity
+import pl.dawidfiruzek.kursandroid.feature.repositories.ui.RepositoriesActivity
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 import pl.dawidfiruzek.kursandroid.feature.splash.ui.SplashActivity
 
@@ -8,10 +11,10 @@ class SplashRouter(
 ) : SplashContract.Router {
 
     override fun navigateToLogin() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        activity.startActivity(Intent(activity, LoginActivity::class.java))
     }
 
     override fun navigateToRepositories() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        activity.startActivity(Intent(activity, RepositoriesActivity::class.java))
     }
 }

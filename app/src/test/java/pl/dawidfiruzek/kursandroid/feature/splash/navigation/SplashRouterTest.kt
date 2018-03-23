@@ -6,6 +6,8 @@ import org.mockito.Mock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoMoreInteractions
+import pl.dawidfiruzek.kursandroid.feature.login.ui.LoginActivity
+import pl.dawidfiruzek.kursandroid.feature.repositories.ui.RepositoriesActivity
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 import pl.dawidfiruzek.kursandroid.feature.splash.ui.SplashActivity
@@ -31,13 +33,13 @@ class SplashRouterTest : BaseTest() {
     fun `should navigate to login activity when navigateToLogin is called`() {
         router.navigateToLogin()
 
-        verify(activity, times(1)).startActivity(Intent(activity, LoginActivity::class))
+        verify(activity, times(1)).startActivity(Intent(activity, LoginActivity::class.java))
     }
 
     @Test
     fun `should navigate to repositories activity when navigateToRepositories is called`() {
         router.navigateToRepositories()
 
-        verify(activity, times(1)).startActivity(Intent(activity, Repositories::class))
+        verify(activity, times(1)).startActivity(Intent(activity, RepositoriesActivity::class.java))
     }
 }
