@@ -32,15 +32,15 @@ class SplashPresenter(
         )
     }
 
-    override fun hide() {
-        compositeDisposable.clear()
-    }
-
     private fun navigation() {
         if (configuration.isUserLoggedIn()) {
             router.navigateToRepositories()
         } else {
             router.navigateToLogin()
         }
+    }
+
+    override fun hide() {
+        compositeDisposable.clear()
     }
 }
