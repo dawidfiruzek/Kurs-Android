@@ -23,6 +23,7 @@ object Versions {
     const val parceler = "1.1.10"
     const val lottie = "2.5.1"
     const val rxPermissions = "0.9.5"
+    const val rxBinding = "2.1.1"
 }
 
 object ClassPaths {
@@ -55,4 +56,5 @@ object Libs {
     const val parcelerCompiler = "org.parceler:parceler:${Versions.parceler}"
     const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
     const val rxPremissions = "com.tbruyelle.rxpermissions2:rxpermissions:${Versions.rxPermissions}@aar"
+    const val rxBinding = "com.jakewharton.rxbinding2:rxbinding:${Versions.rxBinding}"
 }
