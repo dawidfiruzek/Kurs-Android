@@ -20,6 +20,7 @@ object Versions {
     const val hawk = "2.0.1"
     const val rxAndroid = "2.0.2"
     const val rxJava = "2.1.11"
+    const val parceler = "1.1.10"
 }
 
 object ClassPaths {
@@ -48,4 +49,6 @@ object Libs {
     const val hawk = "com.orhanobut:hawk:${Versions.hawk}"
     const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
+    const val parceler = "org.parceler:parceler-api:${Versions.parceler}"
+    const val parcelerCompiler = "org.parceler:parceler:${Versions.parceler}"
 }
