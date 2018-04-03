@@ -1,8 +1,11 @@
 package pl.dawidfiruzek.kursandroid.utils.configuration
 
+import android.content.SharedPreferences
 import com.orhanobut.hawk.Hawk
 
-class ConfigurationImpl : Configuration {
+class ConfigurationImpl(
+        private val sharedPreferences: SharedPreferences
+) : Configuration {
 
     companion object {
         const val PREFS_KEY_LOGGED_IN = "IsUserLoggedIn"
@@ -16,10 +19,12 @@ class ConfigurationImpl : Configuration {
         get() = Hawk.get(PREFS_KEY_USER_LOGIN, "")
         set(value) {
             Hawk.put(PREFS_KEY_USER_LOGIN, value)
-            Hawk.put(PREFS_KEY_LOGGED_IN, true)
+            sharedPreferences.edit()
+                    .putBoolean(PREFS_KEY_LOGGED_IN, true)
+                    .apply()
         }
 
     override fun isUserLoggedIn(): Boolean {
-        return Hawk.get<Boolean>(PREFS_KEY_LOGGED_IN, false)
+        return sharedPreferences.getBoolean(PREFS_KEY_LOGGED_IN, false)
     }
 }
