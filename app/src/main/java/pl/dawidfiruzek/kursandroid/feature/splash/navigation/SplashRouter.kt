@@ -5,9 +5,12 @@ import pl.dawidfiruzek.kursandroid.feature.login.ui.LoginActivity
 import pl.dawidfiruzek.kursandroid.feature.repositories.ui.RepositoriesActivity
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 import pl.dawidfiruzek.kursandroid.feature.splash.ui.SplashActivity
+import pl.dawidfiruzek.kursandroid.feature.utils.configuration.StringConstants.EXTRA_KEY_EXAMPLE
+import pl.dawidfiruzek.kursandroid.feature.utils.tools.parcel.ParcelableProvider
 
 class SplashRouter(
-        private val activity: SplashActivity
+        private val activity: SplashActivity,
+        private val parcelableProvider: ParcelableProvider
 ) : SplashContract.Router {
 
     override fun navigateToLogin() {
@@ -20,12 +23,16 @@ class SplashRouter(
         )
     }
 
-    override fun navigateToRepositories() {
+    override fun navigateToRepositories(exampleExtra: Int) {
         activity.startActivity(
                 RepositoriesActivity::class.java,
                 listOf(
                         Intent.FLAG_ACTIVITY_NEW_TASK,
                         Intent.FLAG_ACTIVITY_CLEAR_TASK
+                ),
+                Pair(
+                        EXTRA_KEY_EXAMPLE,
+                        parcelableProvider.from(exampleExtra)
                 )
         )
     }

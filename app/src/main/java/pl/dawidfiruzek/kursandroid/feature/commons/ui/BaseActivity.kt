@@ -21,10 +21,11 @@ abstract class BaseActivity : AppCompatActivity() {
     fun <T> startActivity(
             activityClass: Class<T>,
             flags: List<Int>? = null,
-            parcelable: Parcelable? = null
+            parcelable: Pair<String, Parcelable>? = null
     ) where T : BaseActivity {
         val intent = Intent(this, activityClass)
         flags?.forEach { intent.addFlags(it) }
+        parcelable?.let { intent.putExtra(it.first, it.second) }
         startActivity(intent)
     }
 }

@@ -67,13 +67,16 @@ class SplashPresenterTest : BaseTest() {
 
     @Test
     fun `should navigate to repositories when user is logged in`() {
+        val exampleExtra = 322
         `when`(configuration.isUserLoggedIn()).thenReturn(true)
+        `when`(configuration.exampleExtra).thenReturn(exampleExtra)
 
         presenter.visible()
 
         verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
         verify(configuration, times(1)).isUserLoggedIn()
-        verify(router, times(1)).navigateToRepositories()
+        verify(configuration, times(1)).exampleExtra
+        verify(router, times(1)).navigateToRepositories(exampleExtra)
     }
 
     @Test
