@@ -54,33 +54,30 @@ class LoginPresenterTest : BaseTest() {
     }
 
     @Test
-    fun `should do nothing when initialize is called`() {
-        presenter.initialize()
-    }
-
-    @Test
-    fun `should do nothing when clear is called`() {
-        presenter.clear()
-    }
-
-    @Test
-    fun `should subscribe for permissions changes when visible is called`() {
+    fun `should subscribe for permissions changes when initialize is called`() {
         `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(PublishSubject.create())
-        visible()
+        initialize()
     }
 
-    private fun visible() {
-        presenter.visible()
+    private fun initialize() {
+        presenter.initialize()
 
         verify(permissionsHelper, times(1)).request(Manifest.permission.CAMERA)
         verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
     }
 
     @Test
+    fun `should clear composite disposable when clear is called`() {
+        presenter.clear()
+
+        verify(compositeDisposable, times(1)).clear()
+    }
+
+    @Test
     fun `should show message and finish when permissions are not granted`() {
         `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(Observable.just(false))
 
-        visible()
+        initialize()
 
         verify(view, times(1)).showMessage(NO_PERMISSIONS_MESSAGE)
         verify(router, times(1)).finish()
@@ -89,13 +86,6 @@ class LoginPresenterTest : BaseTest() {
     @Test
     fun `should do nothing when permissions are granted`() {
         `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(Observable.just(true))
-        visible()
-    }
-
-    @Test
-    fun `should clear composite disposable when hidden is called`() {
-        presenter.hidden()
-
-        verify(compositeDisposable, times(1)).clear()
+        initialize()
     }
 }

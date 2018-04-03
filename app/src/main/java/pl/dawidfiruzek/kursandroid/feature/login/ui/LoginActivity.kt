@@ -25,16 +25,6 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         presenter.clear()
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter.visible()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        presenter.hidden()
-    }
-
     override fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }

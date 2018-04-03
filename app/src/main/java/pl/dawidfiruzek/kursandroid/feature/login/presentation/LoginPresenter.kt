@@ -19,32 +19,30 @@ class LoginPresenter(
         const val NO_PERMISSIONS_MESSAGE = "You have to accept permissions to continue"
     }
 
-    override fun initialize() = Unit
-
-    override fun clear() = Unit
-
-    override fun visible() {
+    override fun initialize() {
         compositeDisposable.add(
                 permissionsHelper
                         .request(Manifest.permission.CAMERA)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
+                        .doOnNext {
+                            if (!it) {
+                                Timber.d("No permissions granted...")
+                                view.showMessage(NO_PERMISSIONS_MESSAGE)
+                                router.finish()
+                            }
+                        }
+                        .filter { it }
                         .subscribe(
                                 {
-                                    if (it) {
-                                        Timber.d("All permissions granted!")
-                                    }
-                                    else {
-                                        view.showMessage(NO_PERMISSIONS_MESSAGE)
-                                        router.finish()
-                                    }
+                                    Timber.d("All permissions granted!")
                                 },
                                 { Timber.e(it) }
                         )
         )
     }
 
-    override fun hidden() {
+    override fun clear() {
         compositeDisposable.clear()
     }
 }

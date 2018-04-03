@@ -12,8 +12,5 @@ interface LoginContract {
         fun finish()
     }
 
-    interface Presenter : BaseContract.Presenter {
-        fun visible()
-        fun hidden()
-    }
+    interface Presenter : BaseContract.Presenter
 }
