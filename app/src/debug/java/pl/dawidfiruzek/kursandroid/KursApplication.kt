@@ -1,5 +1,6 @@
 package pl.dawidfiruzek.kursandroid
 
+import com.facebook.stetho.Stetho
 import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber
 
@@ -13,6 +14,7 @@ class KursApplication : BaseApplication() {
         }
         LeakCanary.install(this)
         // Normal app init code...
+        Stetho.initializeWithDefaults(this)
         super.onCreate()
     }
 

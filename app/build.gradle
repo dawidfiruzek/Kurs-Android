@@ -83,6 +83,8 @@ dependencies {
     implementation Libs.multiDex
     debugImplementation Libs.leakCanary
     debugImplementation Libs.chuck
+    debugImplementation Libs.stetho
+    debugImplementation Libs.stethoNetwork
     testImplementation Libs.junit
     testImplementation Libs.mockito
     androidTestImplementation Libs.testRunner
