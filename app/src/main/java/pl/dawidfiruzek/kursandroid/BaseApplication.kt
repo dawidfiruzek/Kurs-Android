@@ -8,7 +8,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import io.fabric.sdk.android.Fabric
-import pl.dawidfiruzek.kursandroid.feature.utils.injection.DaggerAppComponent
+import pl.dawidfiruzek.kursandroid.utils.injection.DaggerAppComponent
 import javax.inject.Inject
 
 abstract class BaseApplication : Application(), HasActivityInjector {

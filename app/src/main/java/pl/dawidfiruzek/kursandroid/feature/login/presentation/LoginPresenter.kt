@@ -2,10 +2,8 @@ package pl.dawidfiruzek.kursandroid.feature.login.presentation
 
 import android.Manifest
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
-import io.reactivex.schedulers.Schedulers
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelper
 import timber.log.Timber
@@ -25,8 +23,6 @@ class LoginPresenter(
         compositeDisposable.add(
                 getCombinedObservable()
                         .map { view.getUsername() }
-                        .subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 { Timber.d("All permissions granted and button clicked with username: $it") },
                                 { Timber.e(it) }
