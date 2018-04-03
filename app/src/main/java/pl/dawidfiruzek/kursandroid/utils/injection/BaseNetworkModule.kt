@@ -12,12 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class NetworkModule {
-
-    @Singleton
-    @Provides
-    fun okHttpClient(): OkHttpClient =
-            OkHttpClient()
+abstract class BaseNetworkModule {
 
     @Singleton
     @Provides
