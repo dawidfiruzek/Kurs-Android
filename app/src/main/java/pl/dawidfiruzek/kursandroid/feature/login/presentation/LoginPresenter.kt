@@ -39,6 +39,7 @@ class LoginPresenter(
                                     val userLogin = it.login
                                     Timber.d("Request is successful with user login: $userLogin")
                                     configuration.userLogin = userLogin
+                                    router.navigateToRepositories()
                                 },
                                 { Timber.e(it) }
                         )

@@ -13,6 +13,7 @@ interface LoginContract {
 
     interface Router {
         fun finish()
+        fun navigateToRepositories()
     }
 
     interface Presenter : BaseContract.Presenter

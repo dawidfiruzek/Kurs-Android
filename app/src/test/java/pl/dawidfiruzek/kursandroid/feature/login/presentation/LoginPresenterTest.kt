@@ -118,5 +118,6 @@ class LoginPresenterTest : BaseTest() {
         verify(usersService, times(1)).user(username)
         verify(usersResponse, times(1)).login
         verify(configuration, times(1)).userLogin = username
+        verify(router, times(1)).navigateToRepositories()
     }
 }
