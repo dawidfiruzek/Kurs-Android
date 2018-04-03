@@ -16,6 +16,7 @@ import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.feature.login.presentation.LoginPresenter.Companion.NO_PERMISSIONS_MESSAGE
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
 import pl.dawidfiruzek.kursandroid.utils.api.UsersService
+import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelper
 
 class LoginPresenterTest : BaseTest() {
@@ -38,6 +39,9 @@ class LoginPresenterTest : BaseTest() {
     @Mock
     private lateinit var usersResponse: UsersResponse
 
+    @Mock
+    private lateinit var configuration: Configuration
+
     private lateinit var presenter: LoginContract.Presenter
 
     override fun setup() {
@@ -47,6 +51,7 @@ class LoginPresenterTest : BaseTest() {
                 router,
                 permissionsHelper,
                 usersService,
+                configuration,
                 compositeDisposable
         )
     }
@@ -105,11 +110,13 @@ class LoginPresenterTest : BaseTest() {
         `when`(view.getLoginClickedObservable()).thenReturn(Observable.just(Unit))
         `when`(view.getUsername()).thenReturn(username)
         `when`(usersService.user(username)).thenReturn(Observable.just(usersResponse))
+        `when`(usersResponse.login).thenReturn(username)
 
         initialize()
 
         verify(view, times(1)).getUsername()
         verify(usersService, times(1)).user(username)
         verify(usersResponse, times(1)).login
+        verify(configuration, times(1)).userLogin = username
     }
 }

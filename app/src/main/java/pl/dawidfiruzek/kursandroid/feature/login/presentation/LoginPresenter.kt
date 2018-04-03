@@ -8,6 +8,7 @@ import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.utils.api.UsersService
+import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelper
 import timber.log.Timber
 
@@ -16,6 +17,7 @@ class LoginPresenter(
         private val router: LoginContract.Router,
         private val permissionsHelper: PermissionsHelper,
         private val usersService: UsersService,
+        private val configuration: Configuration,
         private val compositeDisposable: CompositeDisposable
 ) : LoginContract.Presenter {
 
@@ -28,12 +30,16 @@ class LoginPresenter(
                 getCombinedObservable()
                         .switchMap {
                             usersService.user(view.getUsername())
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
                         }
                         .distinct()
                         .subscribe(
-                                { Timber.d("Request is successful with user login: ${it.login}") },
+                                {
+                                    val userLogin = it.login
+                                    Timber.d("Request is successful with user login: $userLogin")
+                                    configuration.userLogin = userLogin
+                                },
                                 { Timber.e(it) }
                         )
         )

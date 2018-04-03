@@ -14,10 +14,7 @@ abstract class ActivityBinderModule {
     @Binds
     abstract fun activity(activity: AppCompatActivity): AppCompatActivity
 
-    @ContributesAndroidInjector(modules = [
-        SplashModule::class,
-        ConfigurationModule::class
-    ])
+    @ContributesAndroidInjector(modules = [SplashModule::class])
     abstract fun bindsSplashActivity(): SplashActivity
 
     @ContributesAndroidInjector(modules = [LoginModule::class])

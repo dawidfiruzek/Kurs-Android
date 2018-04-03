@@ -28,7 +28,8 @@ class AppModule {
     AndroidInjectionModule::class,
     AppModule::class,
     ActivityBinderModule::class,
-    NetworkModule::class
+    NetworkModule::class,
+    ConfigurationModule::class
 ])
 interface AppComponent {
 
