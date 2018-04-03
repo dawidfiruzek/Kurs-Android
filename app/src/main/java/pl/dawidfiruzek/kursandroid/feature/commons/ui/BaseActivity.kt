@@ -17,8 +17,12 @@ abstract class BaseActivity : AppCompatActivity() {
         ButterKnife.bind(this)
     }
 
-    fun <T> startActivity(activityClass: Class<T>) where T : BaseActivity {
+    fun <T> startActivity(
+            activityClass: Class<T>,
+            flags: List<Int>? = null
+    ) where T : BaseActivity {
         val intent = Intent(this, activityClass)
+        flags?.forEach { intent.addFlags(it) }
         startActivity(intent)
     }
 }
