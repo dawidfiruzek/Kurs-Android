@@ -24,10 +24,11 @@ class LoginPresenter(
     override fun initialize() {
         compositeDisposable.add(
                 getCombinedObservable()
+                        .map { view.getUsername() }
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
-                                { Timber.d("All permissions granted and button clicked!") },
+                                { Timber.d("All permissions granted and button clicked with username: $it") },
                                 { Timber.e(it) }
                         )
         )
@@ -36,9 +37,7 @@ class LoginPresenter(
     private fun getCombinedObservable(): Observable<Unit> =
             Observable.combineLatest(
                     getPermissionGrantedObservable(),
-                    view.getLoginClickedObservable()
-                            .subscribeOn(AndroidSchedulers.mainThread())
-                            .observeOn(AndroidSchedulers.mainThread()),
+                    view.getLoginClickedObservable(),
                     BiFunction { _, _ -> Unit }
             )
 

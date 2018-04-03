@@ -8,6 +8,7 @@ interface LoginContract {
     interface View {
         fun showMessage(message: String)
         fun getLoginClickedObservable(): Observable<Unit>
+        fun getUsername(): String
     }
 
     interface Router {

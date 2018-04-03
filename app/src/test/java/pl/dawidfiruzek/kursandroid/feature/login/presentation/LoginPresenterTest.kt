@@ -89,9 +89,13 @@ class LoginPresenterTest : BaseTest() {
 
     @Test
     fun `should do nothing when permissions are granted and button is clicked`() {
+        val username = "username"
         `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(Observable.just(true))
         `when`(view.getLoginClickedObservable()).thenReturn(Observable.just(Unit))
+        `when`(view.getUsername()).thenReturn(username)
 
         initialize()
+
+        verify(view, times(1)).getUsername()
     }
 }
