@@ -12,6 +12,7 @@ class ConfigurationImpl : Configuration {
             12
 
     override fun isUserLoggedIn(): Boolean {
+        return true
         return Hawk.get<Boolean>(PREFS_KEY_LOGGED_IN, false)
     }
 }
