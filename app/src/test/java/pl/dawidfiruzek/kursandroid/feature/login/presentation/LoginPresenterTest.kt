@@ -56,6 +56,8 @@ class LoginPresenterTest : BaseTest() {
     @Test
     fun `should subscribe for permissions changes when initialize is called`() {
         `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(PublishSubject.create())
+        `when`(view.getLoginClickedObservable()).thenReturn(PublishSubject.create())
+
         initialize()
     }
 
@@ -64,6 +66,7 @@ class LoginPresenterTest : BaseTest() {
 
         verify(permissionsHelper, times(1)).request(Manifest.permission.CAMERA)
         verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
+        verify(view, times(1)).getLoginClickedObservable()
     }
 
     @Test
@@ -76,6 +79,7 @@ class LoginPresenterTest : BaseTest() {
     @Test
     fun `should show message and finish when permissions are not granted`() {
         `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(Observable.just(false))
+        `when`(view.getLoginClickedObservable()).thenReturn(PublishSubject.create())
 
         initialize()
 
@@ -84,8 +88,10 @@ class LoginPresenterTest : BaseTest() {
     }
 
     @Test
-    fun `should do nothing when permissions are granted`() {
+    fun `should do nothing when permissions are granted and button is clicked`() {
         `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(Observable.just(true))
+        `when`(view.getLoginClickedObservable()).thenReturn(Observable.just(Unit))
+
         initialize()
     }
 }

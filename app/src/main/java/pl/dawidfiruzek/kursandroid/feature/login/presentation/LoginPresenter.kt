@@ -1,8 +1,10 @@
 package pl.dawidfiruzek.kursandroid.feature.login.presentation
 
 import android.Manifest
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.feature.utils.tools.permissions.PermissionsHelper
@@ -21,26 +23,37 @@ class LoginPresenter(
 
     override fun initialize() {
         compositeDisposable.add(
-                permissionsHelper
-                        .request(Manifest.permission.CAMERA)
+                getCombinedObservable()
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .doOnNext {
-                            if (!it) {
-                                Timber.d("No permissions granted...")
-                                view.showMessage(NO_PERMISSIONS_MESSAGE)
-                                router.finish()
-                            }
-                        }
-                        .filter { it }
                         .subscribe(
-                                {
-                                    Timber.d("All permissions granted!")
-                                },
+                                { Timber.d("All permissions granted and button clicked!") },
                                 { Timber.e(it) }
                         )
         )
     }
+
+    private fun getCombinedObservable(): Observable<Unit> =
+            Observable.combineLatest(
+                    getPermissionGrantedObservable(),
+                    view.getLoginClickedObservable()
+                            .subscribeOn(AndroidSchedulers.mainThread())
+                            .observeOn(AndroidSchedulers.mainThread()),
+                    BiFunction { _, _ -> Unit }
+            )
+
+    private fun getPermissionGrantedObservable(): Observable<Unit> =
+            permissionsHelper
+                    .request(Manifest.permission.CAMERA)
+                    .doOnNext {
+                        if (!it) {
+                            Timber.d("No permissions granted...")
+                            view.showMessage(NO_PERMISSIONS_MESSAGE)
+                            router.finish()
+                        }
+                    }
+                    .filter { it }
+                    .map { Unit }
 
     override fun clear() {
         compositeDisposable.clear()
