@@ -1,4 +1,4 @@
-package pl.dawidfiruzek.kursandroid.feature.utils.injection
+package pl.dawidfiruzek.kursandroid.utils.injection
 
 import dagger.Module
 import dagger.Provides
@@ -7,9 +7,9 @@ import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 import pl.dawidfiruzek.kursandroid.feature.splash.navigation.SplashRouter
 import pl.dawidfiruzek.kursandroid.feature.splash.presentation.SplashPresenter
 import pl.dawidfiruzek.kursandroid.feature.splash.ui.SplashActivity
-import pl.dawidfiruzek.kursandroid.feature.utils.configuration.Configuration
-import pl.dawidfiruzek.kursandroid.feature.utils.tools.parcel.ParcelableProvider
-import pl.dawidfiruzek.kursandroid.feature.utils.tools.parcel.ParcelableProviderImpl
+import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
+import pl.dawidfiruzek.kursandroid.utils.tools.parcel.ParcelableProvider
+import pl.dawidfiruzek.kursandroid.utils.tools.parcel.ParcelableProviderImpl
 
 @Module
 class SplashModule {

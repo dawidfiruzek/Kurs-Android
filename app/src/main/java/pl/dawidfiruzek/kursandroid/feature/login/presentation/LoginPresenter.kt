@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
-import pl.dawidfiruzek.kursandroid.feature.utils.tools.permissions.PermissionsHelper
+import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelper
 import timber.log.Timber
 
 class LoginPresenter(

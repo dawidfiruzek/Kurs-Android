@@ -1,4 +1,4 @@
-package pl.dawidfiruzek.kursandroid.feature.utils.tools.parcel
+package pl.dawidfiruzek.kursandroid.utils.tools.parcel
 
 import android.os.Parcelable
 

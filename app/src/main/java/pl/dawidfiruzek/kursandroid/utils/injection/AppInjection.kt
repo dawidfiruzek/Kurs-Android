@@ -1,4 +1,4 @@
-package pl.dawidfiruzek.kursandroid.feature.utils.injection
+package pl.dawidfiruzek.kursandroid.utils.injection
 
 import android.app.Application
 import android.content.Context

@@ -1,4 +1,4 @@
-package pl.dawidfiruzek.kursandroid.feature.utils.tools.permissions
+package pl.dawidfiruzek.kursandroid.utils.tools.permissions
 
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.Observable

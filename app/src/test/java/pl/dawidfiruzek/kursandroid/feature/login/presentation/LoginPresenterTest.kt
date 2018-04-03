@@ -14,7 +14,7 @@ import org.mockito.Mockito.verifyNoMoreInteractions
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.feature.login.presentation.LoginPresenter.Companion.NO_PERMISSIONS_MESSAGE
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
-import pl.dawidfiruzek.kursandroid.feature.utils.tools.permissions.PermissionsHelper
+import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelper
 
 class LoginPresenterTest : BaseTest() {
 

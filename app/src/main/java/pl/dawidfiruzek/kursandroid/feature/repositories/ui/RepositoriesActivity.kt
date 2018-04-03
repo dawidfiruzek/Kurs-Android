@@ -6,7 +6,7 @@ import org.parceler.Parcels
 import pl.dawidfiruzek.kursandroid.R
 import pl.dawidfiruzek.kursandroid.feature.commons.ui.BaseActivity
 import pl.dawidfiruzek.kursandroid.feature.repositories.RepositoriesContract
-import pl.dawidfiruzek.kursandroid.feature.utils.configuration.StringConstants.EXTRA_KEY_EXAMPLE
+import pl.dawidfiruzek.kursandroid.utils.configuration.StringConstants.EXTRA_KEY_EXAMPLE
 import timber.log.Timber
 import javax.inject.Inject
 

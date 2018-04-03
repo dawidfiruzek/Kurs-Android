@@ -5,8 +5,8 @@ import pl.dawidfiruzek.kursandroid.feature.login.ui.LoginActivity
 import pl.dawidfiruzek.kursandroid.feature.repositories.ui.RepositoriesActivity
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 import pl.dawidfiruzek.kursandroid.feature.splash.ui.SplashActivity
-import pl.dawidfiruzek.kursandroid.feature.utils.configuration.StringConstants.EXTRA_KEY_EXAMPLE
-import pl.dawidfiruzek.kursandroid.feature.utils.tools.parcel.ParcelableProvider
+import pl.dawidfiruzek.kursandroid.utils.configuration.StringConstants.EXTRA_KEY_EXAMPLE
+import pl.dawidfiruzek.kursandroid.utils.tools.parcel.ParcelableProvider
 
 class SplashRouter(
         private val activity: SplashActivity,

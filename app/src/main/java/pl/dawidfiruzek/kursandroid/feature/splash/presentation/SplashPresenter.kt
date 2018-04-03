@@ -3,7 +3,7 @@ package pl.dawidfiruzek.kursandroid.feature.splash.presentation
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
-import pl.dawidfiruzek.kursandroid.feature.utils.configuration.Configuration
+import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 

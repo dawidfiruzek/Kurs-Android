@@ -1,9 +1,9 @@
-package pl.dawidfiruzek.kursandroid.feature.utils.injection
+package pl.dawidfiruzek.kursandroid.utils.injection
 
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import pl.dawidfiruzek.kursandroid.feature.utils.configuration.StringConstants
+import pl.dawidfiruzek.kursandroid.utils.configuration.StringConstants
 import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit

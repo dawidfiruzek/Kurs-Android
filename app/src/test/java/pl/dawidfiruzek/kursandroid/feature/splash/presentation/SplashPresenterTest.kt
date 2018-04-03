@@ -10,7 +10,7 @@ import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoMoreInteractions
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
-import pl.dawidfiruzek.kursandroid.feature.utils.configuration.Configuration
+import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 
 class SplashPresenterTest : BaseTest() {
 

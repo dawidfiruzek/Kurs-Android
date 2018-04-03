@@ -1,4 +1,4 @@
-package pl.dawidfiruzek.kursandroid.feature.utils.configuration
+package pl.dawidfiruzek.kursandroid.utils.configuration
 
 import pl.dawidfiruzek.kursandroid.BuildConfig
 

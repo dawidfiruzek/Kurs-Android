@@ -1,4 +1,4 @@
-package pl.dawidfiruzek.kursandroid.feature.utils.injection
+package pl.dawidfiruzek.kursandroid.utils.injection
 
 import dagger.Module
 import dagger.Provides
@@ -7,8 +7,8 @@ import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.feature.login.navigation.LoginRouter
 import pl.dawidfiruzek.kursandroid.feature.login.presentation.LoginPresenter
 import pl.dawidfiruzek.kursandroid.feature.login.ui.LoginActivity
-import pl.dawidfiruzek.kursandroid.feature.utils.tools.permissions.PermissionsHelper
-import pl.dawidfiruzek.kursandroid.feature.utils.tools.permissions.PermissionsHelperImpl
+import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelper
+import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelperImpl
 
 @Module
 class LoginModule {
