@@ -70,6 +70,7 @@ dependencies {
     implementation Libs.parceler
     kapt Libs.parcelerCompiler
     implementation Libs.lottie
+    implementation Libs.rxPremissions
     debugImplementation Libs.leakCanary
     testImplementation Libs.junit
     testImplementation Libs.mockito
