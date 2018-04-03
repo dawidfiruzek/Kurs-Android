@@ -27,7 +27,8 @@ class AppModule {
 @Component(modules = [
     AndroidInjectionModule::class,
     AppModule::class,
-    ActivityBinderModule::class
+    ActivityBinderModule::class,
+    NetworkModule::class
 ])
 interface AppComponent {
 

@@ -72,6 +72,9 @@ dependencies {
     implementation Libs.lottie
     implementation Libs.rxPremissions
     implementation Libs.rxBinding
+    implementation Libs.retrofit
+    implementation Libs.retrofitGsonConverter
+    implementation Libs.retrofitRxAdapter
     debugImplementation Libs.leakCanary
     testImplementation Libs.junit
     testImplementation Libs.mockito

@@ -24,6 +24,7 @@ object Versions {
     const val lottie = "2.5.1"
     const val rxPermissions = "0.9.5"
     const val rxBinding = "2.1.1"
+    const val retrofit = "2.4.0"
 }
 
 object ClassPaths {
@@ -57,4 +58,7 @@ object Libs {
     const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
     const val rxPremissions = "com.tbruyelle.rxpermissions2:rxpermissions:${Versions.rxPermissions}@aar"
     const val rxBinding = "com.jakewharton.rxbinding2:rxbinding:${Versions.rxBinding}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
 }
