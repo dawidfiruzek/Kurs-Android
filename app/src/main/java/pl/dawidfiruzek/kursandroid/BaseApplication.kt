@@ -1,7 +1,7 @@
 package pl.dawidfiruzek.kursandroid
 
 import android.app.Activity
-import android.app.Application
+import android.support.multidex.MultiDexApplication
 import com.crashlytics.android.Crashlytics
 import com.orhanobut.hawk.Hawk
 import dagger.android.AndroidInjector
@@ -11,7 +11,7 @@ import io.fabric.sdk.android.Fabric
 import pl.dawidfiruzek.kursandroid.utils.injection.DaggerAppComponent
 import javax.inject.Inject
 
-abstract class BaseApplication : Application(), HasActivityInjector {
+abstract class BaseApplication : MultiDexApplication(), HasActivityInjector {
 
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>

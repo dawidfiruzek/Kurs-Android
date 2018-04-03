@@ -25,6 +25,8 @@ object Versions {
     const val rxPermissions = "0.9.5"
     const val rxBinding = "2.1.1"
     const val retrofit = "2.4.0"
+    const val chuck = "1.1.0"
+    const val multiDex = "1.0.1"
 }
 
 object ClassPaths {
@@ -37,6 +39,7 @@ object Libs {
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:${Versions.kotlin}"
     const val supportAppcompat = "com.android.support:appcompat-v7:${Versions.support}"
     const val supportRecycler = "com.android.support:recyclerview-v7:${Versions.support}"
+    const val supportDesign = "com.android.support:design:${Versions.support}"
     const val junit = "junit:junit:${Versions.junit}"
     const val testRunner = "com.android.support.test:runner:${Versions.testRunner}"
     const val espressoCore = "com.android.support.test.espresso:espresso-core:${Versions.expresso}"
@@ -61,4 +64,6 @@ object Libs {
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
+    const val chuck = "com.readystatesoftware.chuck:library:${Versions.chuck}"
+    const val multiDex = "com.android.support:multidex:${Versions.multiDex}"
 }
