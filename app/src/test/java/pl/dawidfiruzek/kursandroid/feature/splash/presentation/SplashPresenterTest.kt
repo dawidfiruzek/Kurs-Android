@@ -80,8 +80,8 @@ class SplashPresenterTest : BaseTest() {
     }
 
     @Test
-    fun `should clear composite disposable when hide is called`() {
-        presenter.hide()
+    fun `should clear composite disposable when hidden is called`() {
+        presenter.hidden()
 
         verify(compositeDisposable, times(1)).clear()
     }

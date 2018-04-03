@@ -40,7 +40,7 @@ class SplashPresenter(
         }
     }
 
-    override fun hide() {
+    override fun hidden() {
         compositeDisposable.clear()
     }
 }

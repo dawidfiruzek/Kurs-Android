@@ -1,6 +1,7 @@
 package pl.dawidfiruzek.kursandroid.feature.login.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import pl.dawidfiruzek.kursandroid.R
 import pl.dawidfiruzek.kursandroid.feature.commons.ui.BaseActivity
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
@@ -22,5 +23,19 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     override fun onDestroy() {
         super.onDestroy()
         presenter.clear()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.visible()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        presenter.hidden()
+    }
+
+    override fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

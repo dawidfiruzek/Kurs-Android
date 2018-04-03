@@ -1,6 +1,9 @@
 package pl.dawidfiruzek.kursandroid.feature.login.navigation
 
+import org.junit.Test
 import org.mockito.Mock
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoMoreInteractions
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.feature.login.ui.LoginActivity
@@ -21,5 +24,12 @@ class LoginRouterTest : BaseTest() {
     override fun tearDown() {
         super.tearDown()
         verifyNoMoreInteractions(activity)
+    }
+
+    @Test
+    fun `should finish activity when finish is called`() {
+        router.finish()
+
+        verify(activity, times(1)).finish()
     }
 }

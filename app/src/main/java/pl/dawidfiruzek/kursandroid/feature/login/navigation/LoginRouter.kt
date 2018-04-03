@@ -7,4 +7,7 @@ class LoginRouter(
         private val activity: LoginActivity
 ) : LoginContract.Router {
 
+    override fun finish() {
+        activity.finish()
+    }
 }

@@ -11,6 +11,6 @@ interface SplashContract {
 
     interface Presenter : BaseContract.Presenter {
         fun visible()
-        fun hide()
+        fun hidden()
     }
 }
