@@ -2,9 +2,12 @@ package pl.dawidfiruzek.kursandroid.feature.login.presentation
 
 import android.Manifest
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
+import io.reactivex.schedulers.Schedulers
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
+import pl.dawidfiruzek.kursandroid.utils.api.UsersService
 import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelper
 import timber.log.Timber
 
@@ -12,6 +15,7 @@ class LoginPresenter(
         private val view: LoginContract.View,
         private val router: LoginContract.Router,
         private val permissionsHelper: PermissionsHelper,
+        private val usersService: UsersService,
         private val compositeDisposable: CompositeDisposable
 ) : LoginContract.Presenter {
 
@@ -22,9 +26,14 @@ class LoginPresenter(
     override fun initialize() {
         compositeDisposable.add(
                 getCombinedObservable()
-                        .map { view.getUsername() }
+                        .switchMap {
+                            usersService.user(view.getUsername())
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                        }
+                        .distinct()
                         .subscribe(
-                                { Timber.d("All permissions granted and button clicked with username: $it") },
+                                { Timber.d("Request is successful with user login: ${it.login}") },
                                 { Timber.e(it) }
                         )
         )
