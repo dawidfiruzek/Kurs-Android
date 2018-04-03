@@ -11,9 +11,11 @@ import org.mockito.Mockito.`when`
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoMoreInteractions
+import pl.dawidfiruzek.kursandroid.data.UsersResponse
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.feature.login.presentation.LoginPresenter.Companion.NO_PERMISSIONS_MESSAGE
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
+import pl.dawidfiruzek.kursandroid.utils.api.UsersService
 import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelper
 
 class LoginPresenterTest : BaseTest() {
@@ -30,6 +32,12 @@ class LoginPresenterTest : BaseTest() {
     @Mock
     private lateinit var compositeDisposable: CompositeDisposable
 
+    @Mock
+    private lateinit var usersService: UsersService
+
+    @Mock
+    private lateinit var usersResponse: UsersResponse
+
     private lateinit var presenter: LoginContract.Presenter
 
     override fun setup() {
@@ -38,6 +46,7 @@ class LoginPresenterTest : BaseTest() {
                 view,
                 router,
                 permissionsHelper,
+                usersService,
                 compositeDisposable
         )
     }
@@ -49,7 +58,9 @@ class LoginPresenterTest : BaseTest() {
                 view,
                 router,
                 permissionsHelper,
-                compositeDisposable
+                usersService,
+                compositeDisposable,
+                usersResponse
         )
     }
 
@@ -88,14 +99,17 @@ class LoginPresenterTest : BaseTest() {
     }
 
     @Test
-    fun `should do nothing when permissions are granted and button is clicked`() {
+    fun `should do api call when permissions are granted and button is clicked`() {
         val username = "username"
         `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(Observable.just(true))
         `when`(view.getLoginClickedObservable()).thenReturn(Observable.just(Unit))
         `when`(view.getUsername()).thenReturn(username)
+        `when`(usersService.user(username)).thenReturn(Observable.just(usersResponse))
 
         initialize()
 
         verify(view, times(1)).getUsername()
+        verify(usersService, times(1)).user(username)
+        verify(usersResponse, times(1)).login
     }
 }
