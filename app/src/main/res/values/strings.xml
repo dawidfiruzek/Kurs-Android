@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Kurs Android</string>
+    <string name="login_hint">Enter Github username</string>
+    <string name="login">Login</string>
 </resources>
