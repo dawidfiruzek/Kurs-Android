@@ -69,6 +69,7 @@ dependencies {
     implementation Libs.rxJava
     implementation Libs.parceler
     kapt Libs.parcelerCompiler
+    implementation Libs.lottie
     debugImplementation Libs.leakCanary
     testImplementation Libs.junit
     testImplementation Libs.mockito

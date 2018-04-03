@@ -21,6 +21,7 @@ object Versions {
     const val rxAndroid = "2.0.2"
     const val rxJava = "2.1.11"
     const val parceler = "1.1.10"
+    const val lottie = "2.5.1"
 }
 
 object ClassPaths {
@@ -51,4 +52,5 @@ object Libs {
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val parceler = "org.parceler:parceler-api:${Versions.parceler}"
     const val parcelerCompiler = "org.parceler:parceler:${Versions.parceler}"
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 }
