@@ -1,5 +1,6 @@
 package pl.dawidfiruzek.kursandroid.feature.repositories.presentation
 
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import org.junit.Test
@@ -9,6 +10,8 @@ import org.mockito.Mockito.`when`
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoMoreInteractions
+import pl.dawidfiruzek.kursandroid.data.RepositoryData
+import pl.dawidfiruzek.kursandroid.data.api.RepositoriesResponse
 import pl.dawidfiruzek.kursandroid.feature.repositories.RepositoriesContract
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
 import pl.dawidfiruzek.kursandroid.utils.api.ReposService
@@ -31,6 +34,12 @@ class RepositoriesPresenterTest : BaseTest() {
     @Mock
     private lateinit var compositeDisposable: CompositeDisposable
 
+    @Mock
+    private lateinit var exception: Exception
+
+    @Mock
+    private lateinit var reposResponse: RepositoriesResponse
+
     private lateinit var presenter: RepositoriesContract.Presenter
 
     override fun setup() {
@@ -51,7 +60,9 @@ class RepositoriesPresenterTest : BaseTest() {
                 router,
                 configuration,
                 reposService,
-                compositeDisposable
+                compositeDisposable,
+                exception,
+                reposResponse
         )
     }
 
@@ -71,6 +82,39 @@ class RepositoriesPresenterTest : BaseTest() {
         verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
         verify(configuration, times(1)).userLogin
         verify(reposService, times(1)).repos(userLogin)
+    }
+
+    @Test
+    fun `should update repos list when repos call is success`() {
+        val userLogin = "user"
+        val reposListResponse = listOf(reposResponse)
+        val name = "Name"
+        val description = "Description"
+        val url = "url"
+        val expectedRepositoryData = RepositoryData(
+                name,
+                description,
+                url
+        )
+        `when`(reposService.repos(userLogin)).thenReturn(Observable.just(reposListResponse))
+        `when`(reposResponse.name).thenReturn(name)
+        `when`(reposResponse.description).thenReturn(description)
+        `when`(reposResponse.imageUrl).thenReturn(url)
+
+        initialize(userLogin)
+
+        verify(reposResponse, times(1)).name
+        verify(reposResponse, times(1)).description
+        verify(reposResponse, times(1)).imageUrl
+        verify(view, times(1)).updateRepos(listOf(expectedRepositoryData))
+    }
+
+    @Test
+    fun `should do nothing when repos call is error`() {
+        val userLogin = "user"
+        `when`(reposService.repos(userLogin)).thenReturn(Observable.error(exception))
+
+        initialize(userLogin)
     }
 
     @Test
