@@ -5,6 +5,11 @@ import pl.dawidfiruzek.kursandroid.feature.commons.BaseContract
 interface RepositoriesContract {
 
     interface View
-    interface Router
-    interface Presenter : BaseContract.Presenter
+    interface Router {
+        fun navigateToLogin()
+    }
+
+    interface Presenter : BaseContract.Presenter {
+        fun logoutClicked()
+    }
 }

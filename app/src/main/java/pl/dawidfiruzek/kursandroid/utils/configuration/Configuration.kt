@@ -4,4 +4,5 @@ interface Configuration {
     val exampleExtra: Int
     var userLogin: String
     fun isUserLoggedIn(): Boolean
+    fun clear()
 }

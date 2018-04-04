@@ -27,4 +27,11 @@ class ConfigurationImpl(
     override fun isUserLoggedIn(): Boolean {
         return sharedPreferences.getBoolean(PREFS_KEY_LOGGED_IN, false)
     }
+
+    override fun clear() {
+        Hawk.delete(PREFS_KEY_USER_LOGIN)
+        sharedPreferences.edit()
+                .putBoolean(PREFS_KEY_LOGGED_IN, false)
+                .apply()
+    }
 }
