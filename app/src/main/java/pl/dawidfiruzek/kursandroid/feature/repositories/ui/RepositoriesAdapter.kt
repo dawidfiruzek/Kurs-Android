@@ -22,4 +22,13 @@ class RepositoriesAdapter(
     override fun onBindViewHolder(holder: RepositoriesViewHolder, position: Int) {
         holder.setData(data[position])
     }
+
+    fun updateData(data: List<RepositoryData>) {
+        this.data.apply {
+            clear()
+            addAll(data)
+        }
+        notifyDataSetChanged()
+
+    }
 }
