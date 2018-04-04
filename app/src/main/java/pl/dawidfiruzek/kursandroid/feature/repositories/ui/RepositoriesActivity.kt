@@ -2,6 +2,8 @@ package pl.dawidfiruzek.kursandroid.feature.repositories.ui
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.support.v7.widget.RecyclerView
+import butterknife.BindView
 import butterknife.OnClick
 import org.parceler.Parcels
 import pl.dawidfiruzek.kursandroid.R
@@ -12,6 +14,9 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class RepositoriesActivity : BaseActivity(), RepositoriesContract.View {
+
+    @BindView(R.id.repositories_recycler)
+    lateinit var recyclerView: RecyclerView
 
     @Inject
     lateinit var presenter: RepositoriesContract.Presenter
