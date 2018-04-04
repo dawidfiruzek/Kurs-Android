@@ -44,6 +44,7 @@ class RepositoriesPresenterTest : BaseTest() {
 
     override fun setup() {
         super.setup()
+        trampolineRxPlugin()
         presenter = RepositoriesPresenter(
                 view,
                 router,
@@ -55,7 +56,6 @@ class RepositoriesPresenterTest : BaseTest() {
 
     override fun tearDown() {
         super.tearDown()
-        trampolineRxPlugin()
         verifyNoMoreInteractions(
                 view,
                 router,
