@@ -2,6 +2,7 @@ package pl.dawidfiruzek.kursandroid.feature.repositories.ui
 
 import android.os.Bundle
 import android.os.Parcelable
+import butterknife.OnClick
 import org.parceler.Parcels
 import pl.dawidfiruzek.kursandroid.R
 import pl.dawidfiruzek.kursandroid.feature.commons.ui.BaseActivity
@@ -31,5 +32,10 @@ class RepositoriesActivity : BaseActivity(), RepositoriesContract.View {
     override fun onDestroy() {
         super.onDestroy()
         presenter.clear()
+    }
+
+    @OnClick(R.id.repositories_fab_logout)
+    fun logoutClicked() {
+        presenter.logoutClicked()
     }
 }

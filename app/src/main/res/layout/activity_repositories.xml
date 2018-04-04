@@ -7,5 +7,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="REPOSITORIES"/>
+        android:text="REPOSITORIES" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/repositories_fab_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/repositories_fab_logout_margin"
+        android:layout_marginEnd="@dimen/repositories_fab_logout_margin"
+        android:src="@drawable/ic_logout"/>
 </RelativeLayout>
