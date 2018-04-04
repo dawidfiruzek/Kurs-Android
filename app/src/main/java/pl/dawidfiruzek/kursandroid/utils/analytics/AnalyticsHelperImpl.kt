@@ -12,11 +12,7 @@ class AnalyticsHelperImpl : AnalyticsHelper {
     }
 
     private fun toJsonObject(userProperties: List<Pair<String, Any>>): JSONObject =
-            JSONObject(
-                    userProperties.map {
-                        it.first to it.second
-                    }.toMap()
-            )
+            JSONObject(userProperties.toMap())
 
     override fun setUserProperties(userProperties: List<Pair<String, Any>>) {
         Amplitude.getInstance().setUserProperties(toJsonObject(userProperties))
