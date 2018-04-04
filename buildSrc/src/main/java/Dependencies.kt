@@ -29,6 +29,7 @@ object Versions {
     const val multiDex = "1.0.1"
     const val stetho = "1.5.0"
     const val glide = "4.6.1"
+    const val amplitude = "2.16.0"
 }
 
 object ClassPaths {
@@ -72,4 +73,5 @@ object Libs {
     const val stethoNetwork = "com.facebook.stetho:stetho-okhttp3:${Versions.stetho}"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    const val amplitude = "com.amplitude:android-sdk:${Versions.amplitude}"
 }

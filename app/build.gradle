@@ -50,6 +50,7 @@ android {
     }
     applicationVariants.all {
         buildConfigField 'String', 'BASE_URL', KURS_APP_BASE_URL
+        buildConfigField 'String', 'AMPLITUDE_KEY', KURS_APP_AMPLITUDE_KEY
     }
 }
 
@@ -83,6 +84,7 @@ dependencies {
     implementation Libs.multiDex
     implementation Libs.glide
     kapt Libs.glideCompiler
+    implementation Libs.amplitude
     debugImplementation Libs.leakCanary
     debugImplementation Libs.chuck
     debugImplementation Libs.stetho

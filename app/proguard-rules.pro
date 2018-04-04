@@ -39,6 +39,14 @@
 -keep @org.parceler.Parcel class * { *; }
 -keep class **$$Parcelable { *; }
 
+# Retrofit
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+# Platform calls Class.forName on types which do not exist on Android to determine platform.
+-dontnote retrofit2.Platform
+# Platform used when running on Java 8 VMs. Will not be used at runtime.
+-dontwarn retrofit2.Platform$Java8
+
 # Glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
@@ -46,3 +54,7 @@
   **[] $VALUES;
   public *;
 }
+
+#Amplitude
+-keep class com.google.android.gms.ads.** { *; }
+-dontwarn okio.**

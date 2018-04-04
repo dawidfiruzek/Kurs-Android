@@ -2,6 +2,7 @@ package pl.dawidfiruzek.kursandroid
 
 import android.app.Activity
 import android.support.multidex.MultiDexApplication
+import com.amplitude.api.Amplitude
 import com.crashlytics.android.Crashlytics
 import com.orhanobut.hawk.Hawk
 import dagger.android.AndroidInjector
@@ -20,6 +21,7 @@ abstract class BaseApplication : MultiDexApplication(), HasActivityInjector {
         super.onCreate()
         Hawk.init(this).build()
         Fabric.with(this, Crashlytics())
+        Amplitude.getInstance().initialize(this, BuildConfig.AMPLITUDE_KEY)
         initTimber()
         initDaggerComponent()
     }
