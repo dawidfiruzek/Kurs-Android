@@ -7,6 +7,7 @@ import butterknife.BindView
 import butterknife.OnClick
 import org.parceler.Parcels
 import pl.dawidfiruzek.kursandroid.R
+import pl.dawidfiruzek.kursandroid.data.RepositoryData
 import pl.dawidfiruzek.kursandroid.feature.commons.ui.BaseActivity
 import pl.dawidfiruzek.kursandroid.feature.repositories.RepositoriesContract
 import pl.dawidfiruzek.kursandroid.utils.configuration.StringConstants.EXTRA_KEY_EXAMPLE
@@ -44,6 +45,16 @@ class RepositoriesActivity : BaseActivity(), RepositoriesContract.View {
     private fun initializeRecycler() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = recyclerAdapter
+
+        recyclerAdapter.updateData(
+                listOf(
+                        RepositoryData(
+                                "Title",
+                                "Subtitle",
+                                "http://i0.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg"
+                        )
+                )
+        )
     }
 
     override fun onDestroy() {

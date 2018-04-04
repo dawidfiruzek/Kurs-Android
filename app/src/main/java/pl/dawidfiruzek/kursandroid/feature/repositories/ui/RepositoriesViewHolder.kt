@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.bumptech.glide.Glide
 import pl.dawidfiruzek.kursandroid.R
 import pl.dawidfiruzek.kursandroid.data.RepositoryData
 
@@ -25,8 +26,10 @@ class RepositoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     }
 
     fun setData(repositoryData: RepositoryData) = with(repositoryData) {
-//        repositoryImageView = ??
-        titleTextView.text = imageUrl
+        titleTextView.text = title
         subtitleTextView.text = subtitle
+        Glide.with(itemView)
+                .load(imageUrl)
+                .into(repositoryImageView)
     }
 }
