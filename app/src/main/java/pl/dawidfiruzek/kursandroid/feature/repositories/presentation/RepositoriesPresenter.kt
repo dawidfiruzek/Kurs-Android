@@ -7,6 +7,7 @@ import pl.dawidfiruzek.kursandroid.data.RepositoryData
 import pl.dawidfiruzek.kursandroid.feature.repositories.RepositoriesContract
 import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsEvents
 import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsHelper
+import pl.dawidfiruzek.kursandroid.utils.analytics.UserPropertyKeys
 import pl.dawidfiruzek.kursandroid.utils.api.ReposService
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 import timber.log.Timber
@@ -21,9 +22,11 @@ class RepositoriesPresenter(
 ) : RepositoriesContract.Presenter {
 
     override fun initialize() {
+        val userLogin = configuration.userLogin
         analyticsHelper.logEvent(AnalyticsEvents.REPOSITORIES_OPENED)
+        analyticsHelper.setUserProperties(listOf(UserPropertyKeys.USERNAME to userLogin))
         compositeDisposable.add(
-                reposService.repos(configuration.userLogin)
+                reposService.repos(userLogin)
                         .distinct()
                         .flatMapIterable { it }
                         .map {

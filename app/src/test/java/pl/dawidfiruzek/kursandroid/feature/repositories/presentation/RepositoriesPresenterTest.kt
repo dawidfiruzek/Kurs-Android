@@ -16,6 +16,7 @@ import pl.dawidfiruzek.kursandroid.feature.repositories.RepositoriesContract
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
 import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsEvents
 import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsHelper
+import pl.dawidfiruzek.kursandroid.utils.analytics.UserPropertyKeys
 import pl.dawidfiruzek.kursandroid.utils.api.ReposService
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 
@@ -91,6 +92,7 @@ class RepositoriesPresenterTest : BaseTest() {
         verify(configuration, times(1)).userLogin
         verify(reposService, times(1)).repos(userLogin)
         verify(analyticsHelper, times(1)).logEvent(AnalyticsEvents.REPOSITORIES_OPENED)
+        verify(analyticsHelper, times(1)).setUserProperties(listOf(UserPropertyKeys.USERNAME to userLogin))
     }
 
     @Test
