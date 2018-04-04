@@ -11,7 +11,7 @@ import org.mockito.Mockito.`when`
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoMoreInteractions
-import pl.dawidfiruzek.kursandroid.data.UsersResponse
+import pl.dawidfiruzek.kursandroid.data.api.UsersResponse
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.feature.login.presentation.LoginPresenter.Companion.NO_PERMISSIONS_MESSAGE
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
