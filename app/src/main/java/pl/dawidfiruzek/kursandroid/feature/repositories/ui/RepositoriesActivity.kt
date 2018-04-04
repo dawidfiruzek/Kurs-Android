@@ -19,6 +19,12 @@ class RepositoriesActivity : BaseActivity(), RepositoriesContract.View {
     lateinit var recyclerView: RecyclerView
 
     @Inject
+    lateinit var layoutManager: RecyclerView.LayoutManager
+
+    @Inject
+    lateinit var recyclerAdapter: RepositoriesAdapter
+
+    @Inject
     lateinit var presenter: RepositoriesContract.Presenter
 
     override val layoutId: Int =
@@ -26,12 +32,18 @@ class RepositoriesActivity : BaseActivity(), RepositoriesContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initializeRecycler()
         presenter.initialize()
         val extra: Parcelable? = intent.getParcelableExtra(EXTRA_KEY_EXAMPLE)
         extra?.let {
             val value = Parcels.unwrap<Int>(it)
             Timber.d("Extra value passed to activity is $value")
         }
+    }
+
+    private fun initializeRecycler() {
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = recyclerAdapter
     }
 
     override fun onDestroy() {
