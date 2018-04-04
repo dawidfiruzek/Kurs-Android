@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import dagger.Module
 import dagger.Provides
+import io.reactivex.disposables.CompositeDisposable
 import pl.dawidfiruzek.kursandroid.data.RepositoryData
 import pl.dawidfiruzek.kursandroid.feature.repositories.RepositoriesContract
 import pl.dawidfiruzek.kursandroid.feature.repositories.navigation.RepositoriesRouter
@@ -42,11 +43,15 @@ class RepositoriesModule {
     fun presenter(
             activity: RepositoriesActivity,
             router: RepositoriesContract.Router,
-            configuration: Configuration
+            configuration: Configuration,
+            reposService: ReposService,
+            compositeDisposable: CompositeDisposable
     ): RepositoriesContract.Presenter =
             RepositoriesPresenter(
                     activity,
                     router,
-                    configuration
+                    configuration,
+                    reposService,
+                    compositeDisposable
             )
 }

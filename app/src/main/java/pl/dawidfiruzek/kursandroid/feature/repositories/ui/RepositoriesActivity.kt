@@ -45,16 +45,6 @@ class RepositoriesActivity : BaseActivity(), RepositoriesContract.View {
     private fun initializeRecycler() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = recyclerAdapter
-
-        recyclerAdapter.updateData(
-                listOf(
-                        RepositoryData(
-                                "Title",
-                                "Subtitle",
-                                "http://i0.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg"
-                        )
-                )
-        )
     }
 
     override fun onDestroy() {
@@ -65,5 +55,9 @@ class RepositoriesActivity : BaseActivity(), RepositoriesContract.View {
     @OnClick(R.id.repositories_fab_logout)
     fun logoutClicked() {
         presenter.logoutClicked()
+    }
+
+    override fun updateRepos(data: List<RepositoryData>) {
+        recyclerAdapter.updateData(data)
     }
 }
