@@ -81,6 +81,8 @@ dependencies {
     implementation Libs.retrofitGsonConverter
     implementation Libs.retrofitRxAdapter
     implementation Libs.multiDex
+    implementation Libs.glide
+    kapt Libs.glideCompiler
     debugImplementation Libs.leakCanary
     debugImplementation Libs.chuck
     debugImplementation Libs.stetho
