@@ -55,6 +55,7 @@ class RepositoriesPresenterTest : BaseTest() {
 
     override fun tearDown() {
         super.tearDown()
+        trampolineRxPlugin()
         verifyNoMoreInteractions(
                 view,
                 router,
