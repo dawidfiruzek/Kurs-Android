@@ -52,8 +52,10 @@ class SplashPresenterTest : BaseTest() {
     }
 
     @Test
-    fun `should do nothing when initialize is called`() {
+    fun `should log analytics when initialize is called`() {
         presenter.initialize()
+
+        verify(analyticsHelper, times(1)).logEvent(AnalyticsEvents.SPLASH_OPENED)
     }
 
     @Test
@@ -67,7 +69,6 @@ class SplashPresenterTest : BaseTest() {
 
         presenter.visible()
 
-        verify(analyticsHelper, times(1)).logEvent(AnalyticsEvents.SPLASH_OPENED)
         verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
         verify(configuration, times(1)).isUserLoggedIn()
         verify(router, times(1)).navigateToLogin()
@@ -81,7 +82,6 @@ class SplashPresenterTest : BaseTest() {
 
         presenter.visible()
 
-        verify(analyticsHelper, times(1)).logEvent(AnalyticsEvents.SPLASH_OPENED)
         verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
         verify(configuration, times(1)).isUserLoggedIn()
         verify(configuration, times(1)).exampleExtra

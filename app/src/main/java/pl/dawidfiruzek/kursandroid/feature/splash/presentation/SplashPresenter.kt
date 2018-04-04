@@ -20,12 +20,13 @@ class SplashPresenter(
         const val TIMEOUT = 1500L
     }
 
-    override fun initialize() = Unit
+    override fun initialize() {
+        analyticsHelper.logEvent(AnalyticsEvents.SPLASH_OPENED)
+    }
 
     override fun clear() = Unit
 
     override fun visible() {
-        analyticsHelper.logEvent(AnalyticsEvents.SPLASH_OPENED)
         compositeDisposable.add(
                 Observable.just(Unit)
                         .delay(TIMEOUT, TimeUnit.MILLISECONDS)
