@@ -10,10 +10,16 @@ import pl.dawidfiruzek.kursandroid.feature.repositories.navigation.RepositoriesR
 import pl.dawidfiruzek.kursandroid.feature.repositories.presentation.RepositoriesPresenter
 import pl.dawidfiruzek.kursandroid.feature.repositories.ui.RepositoriesActivity
 import pl.dawidfiruzek.kursandroid.feature.repositories.ui.RepositoriesAdapter
+import pl.dawidfiruzek.kursandroid.utils.api.ReposService
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
+import retrofit2.Retrofit
 
 @Module
 class RepositoriesModule {
+
+    @Provides
+    fun reposService(retrofit: Retrofit): ReposService =
+            retrofit.create(ReposService::class.java)
 
     @Provides
     fun layoutManager(activity: RepositoriesActivity): RecyclerView.LayoutManager =

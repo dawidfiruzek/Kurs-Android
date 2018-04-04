@@ -1,12 +1,16 @@
 package pl.dawidfiruzek.kursandroid.feature.repositories.presentation
 
+import io.reactivex.disposables.CompositeDisposable
 import pl.dawidfiruzek.kursandroid.feature.repositories.RepositoriesContract
+import pl.dawidfiruzek.kursandroid.utils.api.ReposService
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 
 class RepositoriesPresenter(
         private val view: RepositoriesContract.View,
         private val router: RepositoriesContract.Router,
-        private val configuration: Configuration
+        private val configuration: Configuration,
+        private val reposService: ReposService,
+        private val compositeDisposable: CompositeDisposable
 ) : RepositoriesContract.Presenter {
 
     override fun initialize() = Unit
