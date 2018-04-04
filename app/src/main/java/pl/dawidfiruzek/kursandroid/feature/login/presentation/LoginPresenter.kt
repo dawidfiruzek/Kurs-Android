@@ -7,6 +7,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsEvents
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsHelper
 import pl.dawidfiruzek.kursandroid.utils.api.UsersService
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelper
@@ -18,6 +20,7 @@ class LoginPresenter(
         private val permissionsHelper: PermissionsHelper,
         private val usersService: UsersService,
         private val configuration: Configuration,
+        private val analyticsHelper: AnalyticsHelper,
         private val compositeDisposable: CompositeDisposable
 ) : LoginContract.Presenter {
 
@@ -26,6 +29,7 @@ class LoginPresenter(
     }
 
     override fun initialize() {
+        analyticsHelper.logEvent(AnalyticsEvents.LOGIN_OPENED)
         compositeDisposable.add(
                 getCombinedObservable()
                         .switchMap {
@@ -36,6 +40,7 @@ class LoginPresenter(
                         .distinct()
                         .subscribe(
                                 {
+                                    analyticsHelper.logEvent(AnalyticsEvents.LOGIN_REQUEST_SUCCESS)
                                     val userLogin = it.login
                                     Timber.d("Request is successful with user login: $userLogin")
                                     configuration.userLogin = userLogin
@@ -49,7 +54,8 @@ class LoginPresenter(
     private fun getCombinedObservable(): Observable<Unit> =
             Observable.combineLatest(
                     getPermissionGrantedObservable(),
-                    view.getLoginClickedObservable(),
+                    view.getLoginClickedObservable()
+                            .doOnNext { analyticsHelper.logEvent(AnalyticsEvents.LOGIN_BUTTON_CLICKED) },
                     BiFunction { _, _ -> Unit }
             )
 

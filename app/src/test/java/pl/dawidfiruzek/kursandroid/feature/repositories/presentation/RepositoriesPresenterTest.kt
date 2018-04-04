@@ -14,6 +14,8 @@ import pl.dawidfiruzek.kursandroid.data.RepositoryData
 import pl.dawidfiruzek.kursandroid.data.api.RepositoriesResponse
 import pl.dawidfiruzek.kursandroid.feature.repositories.RepositoriesContract
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsEvents
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsHelper
 import pl.dawidfiruzek.kursandroid.utils.api.ReposService
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 
@@ -40,6 +42,9 @@ class RepositoriesPresenterTest : BaseTest() {
     @Mock
     private lateinit var reposResponse: RepositoriesResponse
 
+    @Mock
+    private lateinit var analyticsHelper: AnalyticsHelper
+
     private lateinit var presenter: RepositoriesContract.Presenter
 
     override fun setup() {
@@ -50,6 +55,7 @@ class RepositoriesPresenterTest : BaseTest() {
                 router,
                 configuration,
                 reposService,
+                analyticsHelper,
                 compositeDisposable
         )
     }
@@ -61,6 +67,7 @@ class RepositoriesPresenterTest : BaseTest() {
                 router,
                 configuration,
                 reposService,
+                analyticsHelper,
                 compositeDisposable,
                 exception,
                 reposResponse
@@ -83,6 +90,7 @@ class RepositoriesPresenterTest : BaseTest() {
         verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
         verify(configuration, times(1)).userLogin
         verify(reposService, times(1)).repos(userLogin)
+        verify(analyticsHelper, times(1)).logEvent(AnalyticsEvents.REPOSITORIES_OPENED)
     }
 
     @Test
@@ -129,6 +137,7 @@ class RepositoriesPresenterTest : BaseTest() {
     fun `should logout and navigate to login when logoutClicked is called`() {
         presenter.logoutClicked()
 
+        verify(analyticsHelper, times(1)).logEvent(AnalyticsEvents.LOGOUT_CLICKED)
         verify(configuration, times(1)).clear()
         verify(router, times(1)).navigateToLogin()
     }

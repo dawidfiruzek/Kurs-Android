@@ -7,6 +7,7 @@ import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.feature.login.navigation.LoginRouter
 import pl.dawidfiruzek.kursandroid.feature.login.presentation.LoginPresenter
 import pl.dawidfiruzek.kursandroid.feature.login.ui.LoginActivity
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsHelper
 import pl.dawidfiruzek.kursandroid.utils.api.UsersService
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelper
@@ -37,6 +38,7 @@ class LoginModule {
             permissionsHelper: PermissionsHelper,
             usersService: UsersService,
             configuration: Configuration,
+            analyticsHelper: AnalyticsHelper,
             compositeDisposable: CompositeDisposable
     ): LoginContract.Presenter =
             LoginPresenter(
@@ -45,6 +47,7 @@ class LoginModule {
                     permissionsHelper,
                     usersService,
                     configuration,
+                    analyticsHelper,
                     compositeDisposable
             )
 }

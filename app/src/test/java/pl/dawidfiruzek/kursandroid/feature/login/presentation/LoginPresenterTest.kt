@@ -15,6 +15,8 @@ import pl.dawidfiruzek.kursandroid.data.api.UsersResponse
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.feature.login.presentation.LoginPresenter.Companion.NO_PERMISSIONS_MESSAGE
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsEvents
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsHelper
 import pl.dawidfiruzek.kursandroid.utils.api.UsersService
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 import pl.dawidfiruzek.kursandroid.utils.tools.permissions.PermissionsHelper
@@ -42,6 +44,9 @@ class LoginPresenterTest : BaseTest() {
     @Mock
     private lateinit var configuration: Configuration
 
+    @Mock
+    private lateinit var analyticsHelper: AnalyticsHelper
+
     private lateinit var presenter: LoginContract.Presenter
 
     override fun setup() {
@@ -52,6 +57,7 @@ class LoginPresenterTest : BaseTest() {
                 permissionsHelper,
                 usersService,
                 configuration,
+                analyticsHelper,
                 compositeDisposable
         )
     }
@@ -65,6 +71,7 @@ class LoginPresenterTest : BaseTest() {
                 permissionsHelper,
                 usersService,
                 compositeDisposable,
+                analyticsHelper,
                 usersResponse
         )
     }
@@ -80,6 +87,7 @@ class LoginPresenterTest : BaseTest() {
     private fun initialize() {
         presenter.initialize()
 
+        verify(analyticsHelper, times(1)).logEvent(AnalyticsEvents.LOGIN_OPENED)
         verify(permissionsHelper, times(1)).request(Manifest.permission.CAMERA)
         verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
         verify(view, times(1)).getLoginClickedObservable()
@@ -114,6 +122,8 @@ class LoginPresenterTest : BaseTest() {
 
         initialize()
 
+        verify(analyticsHelper, times(1)).logEvent(AnalyticsEvents.LOGIN_BUTTON_CLICKED)
+        verify(analyticsHelper, times(1)).logEvent(AnalyticsEvents.LOGIN_REQUEST_SUCCESS)
         verify(view, times(1)).getUsername()
         verify(usersService, times(1)).user(username)
         verify(usersResponse, times(1)).login

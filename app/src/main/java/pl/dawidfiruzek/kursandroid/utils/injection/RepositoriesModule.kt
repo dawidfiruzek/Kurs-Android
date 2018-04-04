@@ -11,6 +11,7 @@ import pl.dawidfiruzek.kursandroid.feature.repositories.navigation.RepositoriesR
 import pl.dawidfiruzek.kursandroid.feature.repositories.presentation.RepositoriesPresenter
 import pl.dawidfiruzek.kursandroid.feature.repositories.ui.RepositoriesActivity
 import pl.dawidfiruzek.kursandroid.feature.repositories.ui.RepositoriesAdapter
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsHelper
 import pl.dawidfiruzek.kursandroid.utils.api.ReposService
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 import retrofit2.Retrofit
@@ -45,6 +46,7 @@ class RepositoriesModule {
             router: RepositoriesContract.Router,
             configuration: Configuration,
             reposService: ReposService,
+            analyticsHelper: AnalyticsHelper,
             compositeDisposable: CompositeDisposable
     ): RepositoriesContract.Presenter =
             RepositoriesPresenter(
@@ -52,6 +54,7 @@ class RepositoriesModule {
                     router,
                     configuration,
                     reposService,
+                    analyticsHelper,
                     compositeDisposable
             )
 }
