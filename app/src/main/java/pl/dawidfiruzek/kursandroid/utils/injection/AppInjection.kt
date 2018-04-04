@@ -29,7 +29,8 @@ class AppModule {
     AppModule::class,
     ActivityBinderModule::class,
     NetworkModule::class,
-    ConfigurationModule::class
+    ConfigurationModule::class,
+    AnalyticsModule::class
 ])
 interface AppComponent {
 

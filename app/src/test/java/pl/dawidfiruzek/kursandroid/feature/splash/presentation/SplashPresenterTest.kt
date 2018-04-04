@@ -10,6 +10,8 @@ import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoMoreInteractions
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsEvents
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsHelper
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 
 class SplashPresenterTest : BaseTest() {
@@ -23,6 +25,9 @@ class SplashPresenterTest : BaseTest() {
     @Mock
     private lateinit var compositeDisposable: CompositeDisposable
 
+    @Mock
+    private lateinit var analyticsHelper: AnalyticsHelper
+
     private lateinit var presenter: SplashContract.Presenter
 
     override fun setup() {
@@ -31,6 +36,7 @@ class SplashPresenterTest : BaseTest() {
         presenter = SplashPresenter(
                 router,
                 configuration,
+                analyticsHelper,
                 compositeDisposable
         )
     }
@@ -40,6 +46,7 @@ class SplashPresenterTest : BaseTest() {
         verifyNoMoreInteractions(
                 router,
                 configuration,
+                analyticsHelper,
                 compositeDisposable
         )
     }
@@ -60,6 +67,7 @@ class SplashPresenterTest : BaseTest() {
 
         presenter.visible()
 
+        verify(analyticsHelper, times(1)).logEvent(AnalyticsEvents.SPLASH_OPENED)
         verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
         verify(configuration, times(1)).isUserLoggedIn()
         verify(router, times(1)).navigateToLogin()
@@ -73,6 +81,7 @@ class SplashPresenterTest : BaseTest() {
 
         presenter.visible()
 
+        verify(analyticsHelper, times(1)).logEvent(AnalyticsEvents.SPLASH_OPENED)
         verify(compositeDisposable, times(1)).add(ArgumentMatchers.any())
         verify(configuration, times(1)).isUserLoggedIn()
         verify(configuration, times(1)).exampleExtra

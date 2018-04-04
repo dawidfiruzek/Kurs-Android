@@ -1,10 +1,10 @@
 package pl.dawidfiruzek.kursandroid.feature.splash.presentation
 
-import com.amplitude.api.Amplitude
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsEvents
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsHelper
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit
 class SplashPresenter(
         private val router: SplashContract.Router,
         private val configuration: Configuration,
+        private val analyticsHelper: AnalyticsHelper,
         private val compositeDisposable: CompositeDisposable
 ) : SplashContract.Presenter {
 
@@ -24,7 +25,7 @@ class SplashPresenter(
     override fun clear() = Unit
 
     override fun visible() {
-        Amplitude.getInstance().logEvent(AnalyticsEvents.LOGIN_OPENED)
+        analyticsHelper.logEvent(AnalyticsEvents.SPLASH_OPENED)
         compositeDisposable.add(
                 Observable.just(Unit)
                         .delay(TIMEOUT, TimeUnit.MILLISECONDS)

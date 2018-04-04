@@ -7,6 +7,7 @@ import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 import pl.dawidfiruzek.kursandroid.feature.splash.navigation.SplashRouter
 import pl.dawidfiruzek.kursandroid.feature.splash.presentation.SplashPresenter
 import pl.dawidfiruzek.kursandroid.feature.splash.ui.SplashActivity
+import pl.dawidfiruzek.kursandroid.utils.analytics.AnalyticsHelper
 import pl.dawidfiruzek.kursandroid.utils.configuration.Configuration
 import pl.dawidfiruzek.kursandroid.utils.tools.parcel.ParcelableProvider
 import pl.dawidfiruzek.kursandroid.utils.tools.parcel.ParcelableProviderImpl
@@ -32,11 +33,13 @@ class SplashModule {
     fun presenter(
             router: SplashContract.Router,
             configuration: Configuration,
+            analyticsHelper: AnalyticsHelper,
             compositeDisposable: CompositeDisposable
     ): SplashContract.Presenter =
             SplashPresenter(
                     router,
                     configuration,
+                    analyticsHelper,
                     compositeDisposable
             )
 }
