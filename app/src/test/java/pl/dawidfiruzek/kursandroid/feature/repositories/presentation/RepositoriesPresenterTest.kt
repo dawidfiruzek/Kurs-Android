@@ -2,7 +2,6 @@ package pl.dawidfiruzek.kursandroid.feature.repositories.presentation
 
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.PublishSubject
 import org.junit.Test
 import org.mockito.ArgumentMatchers
 import org.mockito.Mock
@@ -78,7 +77,7 @@ class RepositoriesPresenterTest : BaseTest() {
     @Test
     fun `should subscribe for repos response when initialize is called`() {
         val userLogin = "user"
-        `when`(reposService.repos(userLogin)).thenReturn(PublishSubject.create())
+        `when`(reposService.repos(userLogin)).thenReturn(Observable.never())
 
         initialize(userLogin)
     }
