@@ -1,8 +1,10 @@
 package pl.dawidfiruzek.kursandroid.feature.splash.presentation
 
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
+import org.mockito.Mockito.verifyNoMoreInteractions
 import org.mockito.MockitoAnnotations
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 
@@ -25,11 +27,18 @@ class SplashPresenterTest {
         )
     }
 
-    @Test
-    fun initialize() {
+    @After
+    fun tearDown() {
+        verifyNoMoreInteractions(view, router)
     }
 
     @Test
-    fun clear() {
+    fun `should do nothing when initialize is called`() {
+        presenter.initialize()
+    }
+
+    @Test
+    fun `should do nothing when clear is called`() {
+        presenter.clear()
     }
 }
