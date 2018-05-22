@@ -18,6 +18,8 @@ object Versions {
     const val dagger2 = "2.14.1"
     const val mockito = "2.16.0"
     const val hawk = "2.0.1"
+    const val rxAndroid = "2.0.2"
+    const val rxJava = "2.1.11"
 }
 
 object ClassPaths {
@@ -44,4 +46,6 @@ object Libs {
     const val dagger2AndroidCompiler = "com.google.dagger:dagger-android-processor:${Versions.dagger2}"
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
     const val hawk = "com.orhanobut:hawk:${Versions.hawk}"
+    const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
+    const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
 }

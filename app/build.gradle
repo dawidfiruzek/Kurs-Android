@@ -62,6 +62,8 @@ dependencies {
     implementation Libs.dagger2Android
     kapt Libs.dagger2AndroidCompiler
     implementation Libs.hawk
+    implementation Libs.rxAndroid
+    implementation Libs.rxJava
     debugImplementation Libs.leakCanary
     testImplementation Libs.junit
     testImplementation Libs.mockito
