@@ -67,6 +67,8 @@ dependencies {
     implementation Libs.hawk
     implementation Libs.rxAndroid
     implementation Libs.rxJava
+    implementation Libs.parceler
+    kapt Libs.parcelerCompiler
     debugImplementation Libs.leakCanary
     testImplementation Libs.junit
     testImplementation Libs.mockito
