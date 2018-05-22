@@ -15,6 +15,7 @@ object Versions {
     const val timber = "4.6.1"
     const val leakCanary = "1.5.4"
     const val butterknife = "8.8.1"
+    const val dagger2 = "2.14.1"
 }
 
 object ClassPaths {
@@ -35,4 +36,8 @@ object Libs {
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
     const val butterknife = "com.jakewharton:butterknife:${Versions.butterknife}"
     const val butterknifeCompiler = "com.jakewharton:butterknife-compiler:${Versions.butterknife}"
+    const val dagger2 = "com.google.dagger:dagger:${Versions.dagger2}"
+    const val dagger2Compiler = "com.google.dagger:dagger-compiler:${Versions.dagger2}"
+    const val dagger2Android = "com.google.dagger:dagger-android:${Versions.dagger2}"
+    const val dagger2AndroidCompiler = "com.google.dagger:dagger-android-processor:${Versions.dagger2}"
 }
