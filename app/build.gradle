@@ -14,8 +14,20 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "mode"
+    productFlavors {
+        develop {
+            dimension "mode"
+            applicationIdSuffix ".develop"
+            versionNameSuffix "-develop"
+        }
+        full {
+            dimension "mode"
+
         }
     }
 }
