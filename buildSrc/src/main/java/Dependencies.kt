@@ -26,7 +26,6 @@ object Versions {
     const val rxBinding = "2.1.1"
     const val retrofit = "2.4.0"
     const val chuck = "1.1.0"
-    const val multiDex = "1.0.1"
     const val stetho = "1.5.0"
 }
 
@@ -66,7 +65,6 @@ object Libs {
     const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
     const val chuck = "com.readystatesoftware.chuck:library:${Versions.chuck}"
-    const val multiDex = "com.android.support:multidex:${Versions.multiDex}"
     const val stetho = "com.facebook.stetho:stetho:${Versions.stetho}"
     const val stethoNetwork = "com.facebook.stetho:stetho-okhttp3:${Versions.stetho}"
 }
