@@ -20,7 +20,6 @@ repositories {
 android {
     compileSdkVersion Versions.compileSdk
     defaultConfig {
-        multiDexEnabled true
         applicationId "pl.dawidfiruzek.kursandroid"
         minSdkVersion Versions.minSdk
         targetSdkVersion Versions.targetSdk
@@ -80,7 +79,6 @@ dependencies {
     implementation Libs.retrofit
     implementation Libs.retrofitGsonConverter
     implementation Libs.retrofitRxAdapter
-    implementation Libs.multiDex
     debugImplementation Libs.leakCanary
     debugImplementation Libs.chuck
     testImplementation Libs.junit
