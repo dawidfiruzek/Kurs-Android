@@ -5,6 +5,7 @@ import org.mockito.Mock
 import org.mockito.Mockito.verifyNoMoreInteractions
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
+import pl.dawidfiruzek.kursandroid.feature.utils.tools.permissions.PermissionsHelper
 
 class LoginPresenterTest : BaseTest() {
 
@@ -14,13 +15,17 @@ class LoginPresenterTest : BaseTest() {
     @Mock
     private lateinit var router: LoginContract.Router
 
+    @Mock
+    private lateinit var permissionsHelper: PermissionsHelper
+
     private lateinit var presenter: LoginContract.Presenter
 
     override fun setup() {
         super.setup()
         presenter = LoginPresenter(
                 view,
-                router
+                router,
+                permissionsHelper
         )
     }
 
@@ -28,7 +33,8 @@ class LoginPresenterTest : BaseTest() {
         super.tearDown()
         verifyNoMoreInteractions(
                 view,
-                router
+                router,
+                permissionsHelper
         )
     }
 
