@@ -45,6 +45,7 @@ class LoginPresenterTest : BaseTest() {
 
     override fun setup() {
         super.setup()
+        trampolineRxPlugin()
         presenter = LoginPresenter(
                 view,
                 router,
@@ -57,7 +58,6 @@ class LoginPresenterTest : BaseTest() {
 
     override fun tearDown() {
         super.tearDown()
-        trampolineRxPlugin()
         verifyNoMoreInteractions(
                 view,
                 router,
