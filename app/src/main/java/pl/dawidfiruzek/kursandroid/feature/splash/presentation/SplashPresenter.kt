@@ -34,7 +34,7 @@ class SplashPresenter(
 
     private fun navigation() {
         if (configuration.isUserLoggedIn()) {
-            router.navigateToRepositories(configuration.exampleExtra)
+            router.navigateToRepositories()
         } else {
             router.navigateToLogin()
         }

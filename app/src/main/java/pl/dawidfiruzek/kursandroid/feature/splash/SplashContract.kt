@@ -6,7 +6,7 @@ interface SplashContract {
 
     interface Router {
         fun navigateToLogin()
-        fun navigateToRepositories(exampleExtra: Int)
+        fun navigateToRepositories()
     }
 
     interface Presenter : BaseContract.Presenter {

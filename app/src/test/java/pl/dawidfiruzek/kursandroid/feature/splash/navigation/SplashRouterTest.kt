@@ -13,6 +13,7 @@ import pl.dawidfiruzek.kursandroid.feature.repositories.ui.RepositoriesActivity
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
 import pl.dawidfiruzek.kursandroid.feature.splash.SplashContract
 import pl.dawidfiruzek.kursandroid.feature.splash.ui.SplashActivity
+import pl.dawidfiruzek.kursandroid.feature.utils.configuration.Configuration
 import pl.dawidfiruzek.kursandroid.feature.utils.configuration.StringConstants.EXTRA_KEY_EXAMPLE
 import pl.dawidfiruzek.kursandroid.feature.utils.tools.parcel.ParcelableProvider
 
@@ -27,13 +28,17 @@ class SplashRouterTest : BaseTest() {
     @Mock
     private lateinit var parcelable: Parcelable
 
+    @Mock
+    private lateinit var configuration: Configuration
+
     private lateinit var router: SplashContract.Router
 
     override fun setup() {
         super.setup()
         router = SplashRouter(
                 activity,
-                parcelableProvider
+                parcelableProvider,
+                configuration
         )
     }
 
@@ -41,7 +46,8 @@ class SplashRouterTest : BaseTest() {
         super.tearDown()
         verifyNoMoreInteractions(
                 activity,
-                parcelableProvider
+                parcelableProvider,
+                configuration
         )
     }
 
@@ -60,12 +66,14 @@ class SplashRouterTest : BaseTest() {
 
     @Test
     fun `should start repositories activity when navigateToRepositories is called`() {
-        val extra = 12
-        `when`(parcelableProvider.from(extra)).thenReturn(parcelable)
+        val from = 2
+        `when`(configuration.exampleExtra).thenReturn(from)
+        `when`(parcelableProvider.from(from)).thenReturn(parcelable)
 
-        router.navigateToRepositories(extra)
+        router.navigateToRepositories()
 
-        verify(parcelableProvider, times(1)).from(extra)
+        verify(configuration, times(1)).exampleExtra
+        verify(parcelableProvider, times(1)).from(from)
         verify(activity, times(1)).startActivity(
                 RepositoriesActivity::class.java,
                 listOf(

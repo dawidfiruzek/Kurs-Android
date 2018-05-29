@@ -21,11 +21,13 @@ class SplashModule {
     @Provides
     fun router(
             activity: SplashActivity,
-            parcelableProvider: ParcelableProvider
+            parcelableProvider: ParcelableProvider,
+            configuration: Configuration
     ): SplashContract.Router =
             SplashRouter(
                     activity,
-                    parcelableProvider
+                    parcelableProvider,
+                    configuration
             )
 
     @Provides
