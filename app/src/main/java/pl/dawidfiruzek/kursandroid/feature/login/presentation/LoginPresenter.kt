@@ -27,16 +27,13 @@ class LoginPresenter(
                         .observeOn(AndroidSchedulers.mainThread())
                         .doOnNext {
                             if (!it) {
-                                Timber.d("No permissions granted...")
-                                view.showMessage(NO_PERMISSIONS_MESSAGE)
                                 router.finish()
+                                view.showMessage(NO_PERMISSIONS_MESSAGE)
                             }
                         }
                         .filter { it }
                         .subscribe(
-                                {
-                                    Timber.d("All permissions granted!")
-                                },
+                                { Timber.d("All permissions granted!") },
                                 { Timber.e(it) }
                         )
         )
