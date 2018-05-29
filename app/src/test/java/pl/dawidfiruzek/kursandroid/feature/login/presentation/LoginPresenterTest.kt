@@ -3,7 +3,6 @@ package pl.dawidfiruzek.kursandroid.feature.login.presentation
 import android.Manifest
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.PublishSubject
 import org.junit.Test
 import org.mockito.ArgumentMatchers
 import org.mockito.Mock
@@ -12,7 +11,6 @@ import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoMoreInteractions
 import pl.dawidfiruzek.kursandroid.feature.login.LoginContract
-import pl.dawidfiruzek.kursandroid.feature.login.presentation.LoginPresenter.Companion.NO_PERMISSIONS_MESSAGE
 import pl.dawidfiruzek.kursandroid.feature.splash.BaseTest
 import pl.dawidfiruzek.kursandroid.feature.utils.tools.permissions.PermissionsHelper
 
@@ -44,7 +42,6 @@ class LoginPresenterTest : BaseTest() {
 
     override fun tearDown() {
         super.tearDown()
-        trampolineRxPlugin()
         verifyNoMoreInteractions(
                 view,
                 router,
@@ -55,11 +52,8 @@ class LoginPresenterTest : BaseTest() {
 
     @Test
     fun `should subscribe for permissions changes when initialize is called`() {
-        `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(PublishSubject.create())
-        initialize()
-    }
+        `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(Observable.never())
 
-    private fun initialize() {
         presenter.initialize()
 
         verify(permissionsHelper, times(1)).request(Manifest.permission.CAMERA)
@@ -71,21 +65,5 @@ class LoginPresenterTest : BaseTest() {
         presenter.clear()
 
         verify(compositeDisposable, times(1)).clear()
-    }
-
-    @Test
-    fun `should show message and finish when permissions are not granted`() {
-        `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(Observable.just(false))
-
-        initialize()
-
-        verify(view, times(1)).showMessage(NO_PERMISSIONS_MESSAGE)
-        verify(router, times(1)).finish()
-    }
-
-    @Test
-    fun `should do nothing when permissions are granted`() {
-        `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(Observable.just(true))
-        initialize()
     }
 }
