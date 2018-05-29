@@ -3,7 +3,6 @@ package pl.dawidfiruzek.kursandroid.feature.login.presentation
 import android.Manifest
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.PublishSubject
 import org.junit.Test
 import org.mockito.ArgumentMatchers
 import org.mockito.Mock
@@ -34,6 +33,7 @@ class LoginPresenterTest : BaseTest() {
 
     override fun setup() {
         super.setup()
+        trampolineRxPlugin()
         presenter = LoginPresenter(
                 view,
                 router,
@@ -44,7 +44,6 @@ class LoginPresenterTest : BaseTest() {
 
     override fun tearDown() {
         super.tearDown()
-        trampolineRxPlugin()
         verifyNoMoreInteractions(
                 view,
                 router,
@@ -55,8 +54,8 @@ class LoginPresenterTest : BaseTest() {
 
     @Test
     fun `should subscribe for permissions changes when initialize is called`() {
-        `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(PublishSubject.create())
-        `when`(view.getLoginClickedObservable()).thenReturn(PublishSubject.create())
+        `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(Observable.never())
+        `when`(view.getLoginClickedObservable()).thenReturn(Observable.never())
 
         initialize()
     }
@@ -79,7 +78,7 @@ class LoginPresenterTest : BaseTest() {
     @Test
     fun `should show message and finish when permissions are not granted`() {
         `when`(permissionsHelper.request(Manifest.permission.CAMERA)).thenReturn(Observable.just(false))
-        `when`(view.getLoginClickedObservable()).thenReturn(PublishSubject.create())
+        `when`(view.getLoginClickedObservable()).thenReturn(Observable.never())
 
         initialize()
 
