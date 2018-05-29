@@ -2,6 +2,7 @@ package pl.dawidfiruzek.kursandroid
 
 import android.app.Activity
 import android.app.Application
+import com.amplitude.api.Amplitude
 import com.crashlytics.android.Crashlytics
 import com.orhanobut.hawk.Hawk
 import dagger.android.AndroidInjector
